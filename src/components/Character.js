@@ -17,8 +17,8 @@ function Character({character}) {
   return (
     <li className="content-results-list-item" data-id={id}>
       <CharacterInfo name={name} thumbnail={thumbnail} />
-      <CharacterShortList list={series.items} name="series" />
-      <CharacterShortList list={events.items} name="events" />
+      <CharacterShortList list={series.items} />
+      <CharacterShortList list={events.items} />
     </li>
   );
 }

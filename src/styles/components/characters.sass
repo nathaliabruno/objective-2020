@@ -1,0 +1,76 @@
+.content-results-list
+
+  max-width: 100%
+  padding: 0 100px
+  &-header,
+  &-item
+    display: flex
+    justify-content: space-around
+    padding-left: rem(24)
+    padding-right: rem(24)
+    &-column
+      &:nth-of-type(1),
+      &:nth-of-type(2)
+        flex-basis: 34%
+        margin-right: 10px
+        +below($screen-small)
+          flex-basis: 100%
+          margin-right: 0
+      &:nth-of-type(3)
+        flex-basis: 33%
+
+  &-header
+    div
+      color: $secondary-text
+      font-size: rem(16)
+      line-height: 1.2
+      font-weight: 400
+      padding: rem(10) rem(4)
+
+      &:not(:first-of-type)
+        +below($screen-small)
+          display: none
+
+
+  &-item
+    background: $white 0% 0% no-repeat padding-box
+    box-shadow: 0px 0px 5px $shadow
+    border-radius: 4px
+    margin-bottom: rem(8)
+    padding-top: rem(20)
+    padding-bottom: rem(20)
+
+    &-column
+      padding: 0 10px
+
+      &:not(:first-child)
+        +below($screen-small)
+            display: none
+
+      &:first-child
+        display: flex
+        justify-content: left
+        align-items: center
+        align-content: center
+
+
+    &-image
+      max-width: 58px
+      height: auto
+      border-radius: 4px
+      display:block
+      margin-right: rem(24)
+
+    &-name
+      font-size: rem(22)
+      color: $text
+      font-weight: 700
+      line-height: 1.2
+
+    &-description
+      list-style: none
+      font-size: rem(14)
+      color: $text
+
+    &:hover
+      box-shadow: 0px 0px 5px $text

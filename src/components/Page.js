@@ -1891,9 +1891,9 @@ export default class Page extends React.Component {
 
 
     return (
-      <div>
+      <main className="main-content">
         <CharacterList props={mock.data.results} />
-      </div>
+      </main>
     )
   }
 }
