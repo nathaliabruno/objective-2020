@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ShortList(props) {
+function CharacterShortList(props) {
   const {
     list,
     name
@@ -20,4 +20,4 @@ function ShortList(props) {
   );
 }
 
-export default ShortList;
+export default CharacterShortList;

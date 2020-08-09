@@ -1,25 +1,23 @@
 import React from 'react';
 import CharacterShortList from './CharacterShortList';
+import CharacterInfo from './CharacterInfo';
 
 function Character({character}) {
 
   const {
     name,
-    description,
     series,
     events,
-    comics,
     thumbnail,
-    resourceURI
+    id
   } = character
 
 
 
   return (
-    <li className="content-results-list-item">
-      {name}
+    <li className="content-results-list-item" data-id={id}>
+      <CharacterInfo name={name} thumbnail={thumbnail} />
       <CharacterShortList list={series.items} name="series" />
-      /////////
       <CharacterShortList list={events.items} name="events" />
     </li>
   );
