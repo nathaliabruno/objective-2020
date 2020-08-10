@@ -62,8 +62,14 @@ export default class Page extends React.Component {
   }
 
   updateSearch(value) {
-    this.setState({search: value})
-    this.fetchMarvel(null, value, null)
+
+    if (value) {
+      this.setState({search: value})
+      this.fetchMarvel(null, value, null)
+    }
+    else {
+      this.fetchMarvel(null, null, 1)
+    }
   }
 
   componentDidMount() {
