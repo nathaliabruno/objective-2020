@@ -2,6 +2,7 @@ import React from 'react';
 import CharacterList from './CharacterList';
 import Pagination from './Pagination';
 import Header from './Header';
+import Search from './Search';
 
 
 
@@ -12,11 +13,12 @@ export default class Page extends React.Component {
 
     this.state = {
       characters: null,
-      currentPage: 1
+      currentPage: 1,
+      search: ''
     }
 
-
     this.updatePage = this.updatePage.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
   }
 
   fetchMarvel(id = null, name = null, page = 1) {
@@ -42,11 +44,6 @@ export default class Page extends React.Component {
     }
   }
 
-
-  componentDidMount() {
-    this.fetchMarvel(null, null, this.state.currentPage)
-  }
-
   updatePage(type, pageNumber = this.state.currentPage) {
 
     switch (type) {
@@ -64,20 +61,30 @@ export default class Page extends React.Component {
     this.fetchMarvel(null, null, pageNumber)
   }
 
+  updateSearch(value) {
+    this.setState({search: value})
+    this.fetchMarvel(null, value, null)
+  }
+
+  componentDidMount() {
+    this.fetchMarvel(null, null, this.state.currentPage)
+  }
 
   render () {
 
     const {
         characters,
-        currentPage
+        currentPage,
+        search
     } = this.state
 
     return (
       <div className="wrapper">
         <Header />
         <main className="main-content">
+          <Search value={search} updateSearch={this.updateSearch} />
           {characters && <CharacterList props={characters.results} /> }
-          {characters && <Pagination updatePage={this.updatePage} page={currentPage} total={characters.total} limit={characters.limit} />}
+          {characters && !search ? <Pagination updatePage={this.updatePage} page={currentPage} total={characters.total} limit={characters.limit} /> : null}
         </main>
       </div>
     )
