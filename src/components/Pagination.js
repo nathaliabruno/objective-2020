@@ -76,7 +76,6 @@ export default class Pagination extends React.Component {
     }
   }
 
-  
   componentDidMount() {
     this.setActivePage()
   }
@@ -98,7 +97,7 @@ export default class Pagination extends React.Component {
     const paginationArray = this.getPaginationArray(total, limit);
 
     let first = page !== 1,
-        last = page !== this.state.totalPages 
+        last = page !== this.state.totalPages;
 
     let pages = [];
 
@@ -117,7 +116,7 @@ export default class Pagination extends React.Component {
                 {pages}
               </ul>
           </div>
-          <button className={`content-pagination-next ${!last && '--inactive'}`} onClick={ (e) => updatePage('increment') }> {'>'} </button> 
+          <button className={`content-pagination-next ${!last && '--inactive'}`} onClick={ (e) => updatePage('increment') }> {'>'} </button>
           <button className={`content-pagination-last ${!last && '--inactive'}`} onClick={ (e) => updatePage('goTo', this.state.totalPages) }> {'>>'} </button>
       </nav>
     )
