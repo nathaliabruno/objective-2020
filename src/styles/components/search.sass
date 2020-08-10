@@ -9,6 +9,9 @@
     color: $text
     margin: 0 0 rem(16) 0
 
+    +below($screen-small)
+      text-align: center
+      font-size: rem(24)
 
   &-subtitle
     font-size: rem(16)
@@ -17,9 +20,15 @@
     color: $text
     margin: 0 0 rem(8) 0
 
+    +below($screen-small)
+      text-align: center
+      font-size: rem(14)
+
   &-form
     display: inline-block
     position: relative
+    +below($screen-small)
+        width: 100%
 
     &-input
       background-color: $white
@@ -34,6 +43,10 @@
         color: $secondary-text
         font-size: rem(14)
         line-height: rem(19)
+
+
+      +below($screen-small)
+        width: 100%
 
     &-button
       background: none
