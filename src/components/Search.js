@@ -5,7 +5,6 @@ import search from '../images/search.svg'
 function Search(props) {
 
   const {
-    value,
     updateSearch
   } = props
 
