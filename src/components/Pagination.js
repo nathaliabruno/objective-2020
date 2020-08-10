@@ -7,7 +7,7 @@ export default class Pagination extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      totalPages: Math.ceil(this.props.total / this.props.limit)
+      totalPages: Math.floor(this.props.total / this.props.limit)
     }
   }
 
