@@ -1,6 +1,7 @@
 import React from 'react';
 import CharacterList from './CharacterList';
 import Pagination from './Pagination';
+import Header from './Header';
 
 
 
@@ -1916,10 +1917,13 @@ export default class Page extends React.Component {
     } = this.mock.data
 
     return (
-      <main className="main-content">
-        <CharacterList props={results} />
-        <Pagination updatePage={this.updatePage} page={this.state.currentPage} total={total} limit={limit} />
-      </main>
+      <div className="wrapper">
+        <Header />
+        <main className="main-content">
+          <CharacterList props={results} />
+          <Pagination updatePage={this.updatePage} page={this.state.currentPage} total={total} limit={limit} />
+        </main>
+      </div>
     )
   }
 }
