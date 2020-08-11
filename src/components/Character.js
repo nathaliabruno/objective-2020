@@ -2,7 +2,7 @@ import React from 'react';
 import CharacterShortList from './CharacterShortList';
 import CharacterInfo from './CharacterInfo';
 
-function Character({character}) {
+function Character(props) {
 
   const {
     name,
@@ -10,12 +10,13 @@ function Character({character}) {
     events,
     thumbnail,
     id
-  } = character
+  } = props.character
+
 
 
 
   return (
-    <li className="content-results-list-item" data-id={id}>
+    <li className="content-results-list-item" onClick={(e) => props.updateDetails(id)}>
       <CharacterInfo name={name} thumbnail={thumbnail} />
       <CharacterShortList list={series.items} />
       <CharacterShortList list={events.items} />

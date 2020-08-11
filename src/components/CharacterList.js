@@ -1,7 +1,12 @@
 import React from 'react';
 import Character from './Character';
 
-function CharacterList({props}) {
+function CharacterList(props) {
+
+  const {
+    characters,
+    updateDetails
+  } = props
 
   return (
 
@@ -12,8 +17,8 @@ function CharacterList({props}) {
         <div className="content-results-list-header-column">Eventos</div>
       </li>
       {
-        props.map(item => {
-          return <Character key={item.id} character={item} />
+        characters.map(item => {
+          return <Character updateDetails={updateDetails} key={item.id} character={item} />
         })
       }
     </ul>

@@ -1,0 +1,129 @@
+.details
+  position: fixed
+  top: -200vh
+  left: 0
+  right: 0
+  bottom: 100%
+  transition: top .5s ease
+
+  &.--active
+    top: 0
+    bottom: 0
+    transition: top .5s ease
+
+  &-close
+    text-decoration: none
+    font-weight: 300
+    color: $text
+    position: absolute
+    font-size: rem(30)
+    top: 10%
+    right: 10%
+    z-index: 10
+    background: none
+    border: none
+    transform: rotate(45deg)
+
+    &:focus
+      outline-color: transparent
+      outline-width: 0
+
+  &-overlay
+    background: rgba(127,127,127,0.8)
+    position: fixed
+    height: 100%
+    width: 100%
+
+  &-content
+    background: $white
+    position: fixed
+    width: 80%
+    height: 80%
+    transform: translate(-50%, -50%)
+    left: 50%
+    top: 50%
+    border-top: 4px solid $primary
+    border-bottom: 4px solid $primary
+    padding: 20px
+    display: flex
+    flex-direction: column
+
+    +below($screen-small)
+      height: 95%
+      width: 90%
+
+    &-title
+      font-weight: 900
+      color: $primary
+      text-transform: uppercase
+      font-size: rem(27)
+
+      +below($screen-small)
+        margin: rem(16)
+      
+
+    &-infos
+      display: flex
+      justify-content: flex-start
+      align-items: center
+
+      +below($screen-small)
+        display: none
+
+    &-image
+      display: block
+      border-radius: rem(4)
+
+    &-description
+      margin-left: 20px
+      font-size: rem(14)
+      line-height: 1.2
+
+
+    &-columns
+      display: flex
+      justify-content: space-between
+      flex: 1 1 100%
+
+      +below($screen-small)
+        flex-direction: column
+
+    &-section
+      flex-basis: 49%
+
+      &-title
+        color: $text
+        font-size: rem(20)
+        line-height: 1.2
+        font-weight: 400
+        padding: 10px
+        margin-bottom: 0
+        border-bottom: 1px solid $secondary
+
+        +below($screen-small)
+          margin-top: rem(10)
+
+      &-list
+        padding: 0
+        max-height: rem(350)
+        overflow-y: scroll
+
+        +below($screen-small)
+          max-height: rem(175)
+
+        &-item
+          display: block
+          padding: 10px
+          border-bottom: $secondary solid 1px
+          display: flex
+
+          &-image
+            display: block
+            max-width: rem(50)
+            height: auto
+
+          &-title
+            font-weight: 300
+            margin-left: 10px
+            padding-right: 20px
+

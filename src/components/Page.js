@@ -3,6 +3,7 @@ import CharacterList from './CharacterList';
 import Pagination from './Pagination';
 import Header from './Header';
 import Search from './Search';
+import Details from './Details';
 
 
 
@@ -14,29 +15,32 @@ export default class Page extends React.Component {
     this.state = {
       characters: null,
       currentPage: 1,
-      search: ''
+      search: '',
+      detailsId: 0,
+      details: {}
     }
 
     this.updatePage = this.updatePage.bind(this);
     this.updateSearch = this.updateSearch.bind(this);
+    this.updateDetails = this.updateDetails.bind(this);
   }
 
   fetchMarvel(id = null, name = null, page = 1) {
     if (id) {
-      fetch(`https://gateway.marvel.com/v1/public/characters/${id}?apikey=f804a6ba72e8f9e0aa1f02098a4d9760&limit=10&hash=798cc55b71bd99cdbb17ea46e4d9ecc4&ts=1`)
+      fetch(`https://gateway.marvel.com/v1/public/characters/${id}?apikey=a09c7cee2afceec7a177ee8e2155acea&limit=10&hash=18ee8a5e6eb6d452811857293b1dd4ab&ts=1`)
         .then(res => res.json())
         .then((json) => {
-            this.setState({characters: json.data, currentPage: page});
+            this.setState({details: json.data});
         })
     } else if (name) {
-      fetch(`https://gateway.marvel.com/v1/public/characters?nameStartsWith=${name}&apikey=f804a6ba72e8f9e0aa1f02098a4d9760&limit=100&hash=798cc55b71bd99cdbb17ea46e4d9ecc4&ts=1`)
+      fetch(`https://gateway.marvel.com/v1/public/characters?nameStartsWith=${name}&apikey=a09c7cee2afceec7a177ee8e2155acea&limit=100&hash=18ee8a5e6eb6d452811857293b1dd4ab&ts=1`)
         .then(res => res.json())
         .then((json) => {
             this.setState({characters: json.data, currentPage: page});
         })
     } if (page) {
       let offset = page > 1 ? page * 10 : 0
-      fetch(`https://gateway.marvel.com/v1/public/characters?apikey=f804a6ba72e8f9e0aa1f02098a4d9760&limit=10&hash=798cc55b71bd99cdbb17ea46e4d9ecc4&ts=1&offset=${offset}`)
+      fetch(`https://gateway.marvel.com/v1/public/characters?apikey=a09c7cee2afceec7a177ee8e2155acea&limit=10&hash=18ee8a5e6eb6d452811857293b1dd4ab&ts=1&offset=${offset}`)
         .then(res => res.json())
         .then((json) => {
             this.setState({characters: json.data, currentPage: page});
@@ -72,8 +76,18 @@ export default class Page extends React.Component {
     }
   }
 
+  updateDetails(id) {
+    this.setState({detailsId: id})
+    if (id !== 0) {
+      this.fetchMarvel(id, null, null)
+    } else {
+      this.setState({details: {}})
+    }
+  }
+
   componentDidMount() {
     this.fetchMarvel(null, null, this.state.currentPage)
+    this.fetchMarvel(this.state.detailsId, null, null)
   }
 
   render () {
@@ -89,9 +103,10 @@ export default class Page extends React.Component {
         <Header />
         <main className="main-content">
           <Search value={search} updateSearch={this.updateSearch} />
-          {characters && <CharacterList props={characters.results} /> }
+          {characters && <CharacterList updateDetails={this.updateDetails} characters={characters.results} /> }
           {characters && !search ? <Pagination updatePage={this.updatePage} page={currentPage} total={characters.total} limit={characters.limit} /> : null}
         </main>
+        <Details details={this.state.details.results} updateDetails={this.updateDetails} id={this.state.detailsId}/>
       </div>
     )
   }
