@@ -62,17 +62,32 @@ export default class Pagination extends React.Component {
   }
 
   changePosition(ul, pageNumber, elSize) {
-    const maxMove = this.state.totalPages - 3
-    if ( pageNumber > 2 ) {
-      let move = (pageNumber - 3) * elSize
-      ul.style.marginLeft = `-${move}px`
-
-      if (pageNumber > maxMove ) {
-        let move = (maxMove - 2) * elSize
+    if (this.isSmall) {
+      const maxMove = this.state.totalPages - 2
+      if ( pageNumber > 1 ) {
+        let move = (pageNumber - 2) * elSize
         ul.style.marginLeft = `-${move}px`
+
+        if (pageNumber > maxMove ) {
+          let move = (maxMove - 1) * elSize
+          ul.style.marginLeft = `-${move}px`
+        }
+      } else {
+        ul.style.marginLeft = '0px'
       }
-    } else {
-      ul.style.marginLeft = '0px'
+    }else {
+      const maxMove = this.state.totalPages - 3
+      if ( pageNumber > 2 ) {
+        let move = (pageNumber - 3) * elSize
+        ul.style.marginLeft = `-${move}px`
+
+        if (pageNumber > maxMove ) {
+          let move = (maxMove - 2) * elSize
+          ul.style.marginLeft = `-${move}px`
+        }
+      } else {
+        ul.style.marginLeft = '0px'
+      }
     }
   }
 
