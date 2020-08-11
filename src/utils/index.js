@@ -3,3 +3,7 @@ export const isSmallScreen = () => {
 }
 
 
+
+export const generateThumbURL = (thumbnail) => {
+  return `${thumbnail.path}/standard_medium.${thumbnail.extension}`
+}
